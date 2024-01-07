@@ -1,25 +1,31 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import {
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import DetailScreen from './src/screens/detail-screen';
+import PaymentSection from './src/screens/payment-section';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import TabNavigators from './src/navigators/tab-navigators';
 
 function App(): React.JSX.Element {
+  const Stack = createNativeStackNavigator();
+
   return (
-  <View>
-    <Text>Hello World test</Text>
-  </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen
+          name="Tab"
+          component={TabNavigators}
+          options={{animation: 'slide_from_bottom'}}></Stack.Screen>
+        <Stack.Screen
+          name="Details"
+          component={DetailScreen}
+          options={{animation: 'slide_from_bottom'}}></Stack.Screen>
+        <Stack.Screen
+          name="Payment"
+          component={PaymentSection}
+          options={{animation: 'slide_from_bottom'}}></Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-
 
 export default App;
